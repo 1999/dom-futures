@@ -6,24 +6,6 @@ var Promise = require("./").Promise;
     }, 1000);
 });*/
 
-function getPromise() {
-    return new Promise(function (resolver) {
-        var timeout = Math.round(Math.random() * 1000);
-
-        setTimeout(function () {
-            resolver.resolve(timeout);
-        }, timeout);
-    });
-}
-
-Promise.every(getPromise(), getPromise(), getPromise()).then(function (val) {
-    console.log(val);
-});
-
-return;
-
-
-
 // deferred.then(function (val) {
 //     console.log(val);
 //     return val;
