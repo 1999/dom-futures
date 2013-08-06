@@ -1,0 +1,119 @@
+var Promise = require("./").Promise;
+
+/*var deferred = new Promise(function (resolver) {
+    setTimeout(function () {
+        resolver.resolve(Math.random());
+    }, 1000);
+});*/
+
+function getPromise() {
+    return new Promise(function (resolver) {
+        var timeout = Math.round(Math.random() * 1000);
+
+        setTimeout(function () {
+            resolver.resolve(timeout);
+        }, timeout);
+    });
+}
+
+Promise.every(getPromise(), getPromise(), getPromise()).then(function (val) {
+    console.log(val);
+});
+
+return;
+
+
+
+// deferred.then(function (val) {
+//     console.log(val);
+//     return val;
+// }).then(function (val) {
+//     console.log(val);
+//     return val;
+// }).then(function (val) {
+//     console.log(val);
+//     return val;
+// });
+
+// return;
+
+/* var promise = new Promise(function (resolver) {
+    setTimeout(function () {
+        resolver.resolve("RESOLVED!");
+    }, 1000);
+});
+
+var promise2 = promise.then(function (value) {
+    console.log("GOT: " + value);
+    return Math.random();
+});
+
+var promise3 = promise2.then(function (value) {
+    console.log("GOT: " + value);
+})
+
+Promise.resolve(2).then(function (val) {
+  console.log("GOT: " + val);
+  return Math.random();
+}).then(function (val) {
+  console.log("GOT: " + val);
+  return Math.random();
+}).then(function (val) {
+  console.log("GOT: " + val);
+  return Math.random();
+}).then(function (val) {
+  console.log("GOT: " + val);
+  return Math.random();
+}).then(function (val) {
+  console.log("GOT: " + val);
+  return Math.random();
+});*/
+
+/* Promise.resolve(getPromise("START")).then(function (value) {
+    console.log("OKAY1: " + value);
+    return getPromise(Date.now()); // уходит не туда, then() должен вызываться у внешнего ресолва с итоговым значением
+}).then(function (value) {
+    console.log("OKAY2: " + value);
+    return getPromise(Date.now());
+})/*.then(function (value) {
+    console.log("OKAY3: " + value);
+    return getPromise(Date.now());
+}).then(function (value) {
+    console.log("OKAY4: " + value);
+    return getPromise(Date.now());
+});
+
+function getPromise(val) {
+    console.log("Start with val: " + val);
+
+    return new Promise(function (resolver) {
+        setTimeout(function () {
+            resolver.resolve(Math.random());
+        }, 1000);
+    });
+} */
+
+/* function getPromise2(val) {
+    console.log("Start with val: " + val);
+
+    return new Promise(function (resolver) {
+        setTimeout(function () {
+            resolver.resolve(Math.random());
+        }, 1000);
+    });
+}
+
+function getPromise3(val) {
+    console.log("Start with val: " + val);
+
+    return new Promise(function (resolver) {
+        setTimeout(function () {
+            resolver.resolve(Math.random());
+        }, 1000);
+    });
+}
+
+// the problem is - getPromise3 doesnot append to promise
+getPromise(0).then(getPromise2).then(getPromise3).then(getPromise).then(getPromise).then(function (val) {
+    console.log("END WITH: " + val);
+}) */
